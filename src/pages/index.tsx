@@ -16,7 +16,7 @@ export default function Home() {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <SignedIn>
             <SignOutButton>
-              <button>Sign Out</button>
+              <button className="border-2 border-slate-200 bg-white">Sign Out</button>
             </ SignOutButton>
           </SignedIn>
         </div>
