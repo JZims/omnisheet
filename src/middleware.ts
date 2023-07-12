@@ -6,7 +6,7 @@ export default authMiddleware({
     publicRoutes: ["/sign-in"],
 
     afterAuth(auth, req) {
-        if (!auth.userId && !auth.isPublicRoute) {
+        if (!auth.userId && !auth.isPublicRoute && req.url) {
             return redirectToSignIn({ returnBackUrl: req.url });
         }
         
@@ -15,5 +15,6 @@ export default authMiddleware({
 })
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
-};
+    matcher: ["/((?!.*\\..*|_next).*)","/","/(api|trpc)(.*)"],
+  };
+  
