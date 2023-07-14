@@ -6,7 +6,7 @@ const newSheet: Sheet = {
     charLastName: "Guy",
     charLevel: 4, 
     xpPoints: 250, 
-    classes: ["bard"],
+    classes: ["bard", "sorcerer", "paladin"],
 
 }
  export default function SheetPage() {
@@ -16,7 +16,7 @@ const newSheet: Sheet = {
         <div>
             <h1>{newSheet.charFirstName}</h1>
             <h2>lvl {newSheet.charLevel}</h2>
-            <h2>{newSheet.classes[0]}</h2>
+            <h2>{newSheet.classes.map((className) => { return className + " "})}</h2>
         </div>
         
     )
