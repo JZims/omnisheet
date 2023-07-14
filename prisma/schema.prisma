@@ -10,8 +10,20 @@ datasource db {
 }
 
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model User {
+  id      Int      @id 
+  email   String   @unique
+  firstName    String?
+  lastName    String?
+  sheets  Sheet[]
+
+  @@unique([firstName, lastName])
+}
+
+model Sheet {
+  id    Int   @id @default(autoincrement())
+  createdAt   DateTime
+  authorEmail String 
+  author    User    @relation(fields: [authorEmail], references: [email])
+  system    String
 }

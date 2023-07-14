@@ -1,14 +1,18 @@
 
 import Link from "next/link";
-import { SignOutButton, useAuth } from "@clerk/nextjs";
+import { SignOutButton, useAuth, useUser } from "@clerk/nextjs";
 
 
 
 export default function NavBar () {
 
 const {isLoaded, userId, sessionId} = useAuth()
+const { user } = useUser()
+
+console.log(user)
 
     if (isLoaded && userId && sessionId) {
+    
 
         return (
         <> 
