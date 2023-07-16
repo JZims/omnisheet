@@ -6,11 +6,11 @@ import { SignOutButton, useAuth, useUser } from "@clerk/nextjs";
 
 export default function NavBar () {
 
-const {isLoaded, userId, sessionId} = useAuth()
-const { user, isSignedIn } = useUser()
+const {isLoaded, userId} = useAuth()
+const { isSignedIn } = useUser()
 
 
-    if (isLoaded && isSignedIn) {
+    if (isLoaded && isSignedIn && userId) {
 
         return (
         <> 
@@ -24,4 +24,4 @@ const { user, isSignedIn } = useUser()
 
     } else return null
 
-}
+}  

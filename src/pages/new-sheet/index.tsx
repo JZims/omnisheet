@@ -16,7 +16,7 @@ const newSheet: Sheet = {
         <div>
             <h1>{newSheet.charFirstName}</h1>
             <h2>lvl {newSheet.charLevel}</h2>
-            <h2>{newSheet.classes.map((className) => { return className + " "})}</h2>
+            <h2>{ !!newSheet.classes ? newSheet.classes.map((className) => { return className + " "}) : "(no class selected)"}</h2>
         </div>
         
     )

@@ -1,9 +1,9 @@
-import { authMiddleware} from "@clerk/nextjs";
+import { authMiddleware } from "@clerk/nextjs";
 
 //Runs on every component hydrate
 
 export default authMiddleware({
-    publicRoutes: ["/sign-in"],
+    publicRoutes: ["/sign-in", "/"],
 
 })
 
