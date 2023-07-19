@@ -15,9 +15,10 @@ model User {
   email   String   @unique
   firstName    String?
   lastName    String?
-  sheets  Sheet[]
+  username    String @unique
+  sheets    Sheet[]
 
-  @@unique([firstName, lastName])
+  @@unique([firstName, lastName, username])
 }
 
 model Sheet {
