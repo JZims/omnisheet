@@ -20,6 +20,8 @@ export default function Welcome() {
             
         )
     } else if (isLoaded === true) {
+
+
         return (
           <>
             <NavBar />
