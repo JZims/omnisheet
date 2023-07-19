@@ -6,7 +6,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 const MyApp: AppType = ({ Component, pageProps }: AppProps) => {
   return (
     <ClerkProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </ClerkProvider>
     
   )

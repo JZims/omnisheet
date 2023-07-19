@@ -6,17 +6,18 @@ const newSheet: Sheet = {
     charLastName: "Guy",
     charLevel: 4, 
     xpPoints: 250, 
-    classes: ["bard", "sorcerer", "paladin"],
+    classes: ["Bard", "Sorcerer"],
 
 }
  export default function SheetPage() {
 
     return(
 
-        <div>
-            <h1>{newSheet.charFirstName}</h1>
-            <h2>lvl {newSheet.charLevel}</h2>
-            <h2>{ !!newSheet.classes ? newSheet.classes.map((className) => { return className + " "}) : "(no class selected)"}</h2>
+        <div className="flex justify-center flex-auto">
+            <h1 className="grow">{newSheet.charFirstName}</h1>
+            <h1 className="grow">{newSheet.charLastName}</h1>
+            <h2 className="grow">lvl {newSheet.charLevel}</h2>
+            <h2 className="grow">{ !!newSheet.classes ? newSheet.classes.map((className) => { return className + " "}) : "(no class selected)"}</h2>
         </div>
         
     )

@@ -3,16 +3,14 @@
 import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import NavBar from "~/components/navbar";
-import Head from "next/head";
-// import Page from "../sign-in/[[...index]]";
-
+import Head from "next/head"; 
 
 
 export default function Welcome() {
-    const {isSignedIn} = useUser()
+    const {isSignedIn, isLoaded} = useUser()
     const {sessionId} = useAuth()
 
-    if (!isSignedIn && !sessionId) {
+    if (!isSignedIn && !sessionId && isLoaded) {
 
         return(
             <div>
@@ -21,7 +19,7 @@ export default function Welcome() {
             </div>
             
         )
-    } else {
+    } else if (isLoaded === true) {
         return (
           <>
             <NavBar />

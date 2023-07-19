@@ -26,4 +26,5 @@ model Sheet {
   authorEmail String 
   author    User    @relation(fields: [authorEmail], references: [email])
   system    String
+  character Json
 }
