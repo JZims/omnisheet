@@ -4,11 +4,43 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import NavBar from "~/components/navbar";
 import Head from "next/head"; 
+// import { useState } from "react";
+
 
 
 export default function Welcome() {
-    const {isSignedIn, isLoaded, user} = useUser()
+
+    // const [gameSystem, setGameSystem] = useState("")
+    const {isSignedIn, isLoaded} = useUser()
     const {sessionId} = useAuth()
+
+    // const fetchSheetsFromApi = async () =>{
+
+    // }
+
+    // const Dropdown = () => {
+
+    //   const handleSysChange = (event: Object) => {
+
+    //     setGameSystem(event.target.id)
+
+
+        
+    //   }
+
+    //   return (
+    //     <>
+    //       <details className="dropdown mb-32">
+    //         <summary className="m-1 btn">Game System</summary>
+    //         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+    //           <li ><a onClick={handleSysChange} id="dnd5e">D&D 5E</a></li>
+    //           <li ><a onClick={handleSysChange} id="fate">FATE</a></li>
+    //         </ul>
+    //       </details>
+    //   </>
+    //   )
+
+    // }
 
     if (!isSignedIn && !sessionId && isLoaded) {
 
@@ -21,8 +53,7 @@ export default function Welcome() {
         )
     } else if (isLoaded === true) {
 
-      console.log(user)
-
+  
         return (
           <>
             <NavBar />
@@ -37,7 +68,7 @@ export default function Welcome() {
                 
                 <p>Here&apos;s your homepage!</p>
 
-
+               {/* <Dropdown /> */}
                 
               </div>
             </main>
