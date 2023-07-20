@@ -7,7 +7,7 @@ import Head from "next/head";
 
 
 export default function Welcome() {
-    const {isSignedIn, isLoaded} = useUser()
+    const {isSignedIn, isLoaded, user} = useUser()
     const {sessionId} = useAuth()
 
     if (!isSignedIn && !sessionId && isLoaded) {
@@ -21,6 +21,7 @@ export default function Welcome() {
         )
     } else if (isLoaded === true) {
 
+      console.log(user)
 
         return (
           <>
@@ -35,6 +36,8 @@ export default function Welcome() {
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 
                 <p>Here&apos;s your homepage!</p>
+
+
                 
               </div>
             </main>

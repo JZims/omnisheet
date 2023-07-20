@@ -11,7 +11,7 @@ datasource db {
 
 
 model User {
-  id      Int      @id 
+  id      String     @id 
   email   String   @unique
   firstName    String?
   lastName    String?
@@ -25,7 +25,7 @@ model Sheet {
   id    Int   @id @default(autoincrement())
   createdAt   DateTime
   authorEmail String 
-  author    User    @relation(fields: [authorEmail], references: [email])
+  author    User    @relation(fields: [authorEmail], references: [email], onDelete: Cascade)
   system    String
   character Json
 }

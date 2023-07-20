@@ -1,44 +1,48 @@
 
-// import { createTRPCRouter, privateProcedure, publicProcedure } from "npm/server/api/trpc";
-// import { clerkClient } from "@clerk/nextjs";
-// import { filterUserForClient } from "npm/server/helpers/filterUserForClient";
-// import { TRPCError } from "@trpc/server";
+import { createTRPCRouter, publicProcedure } from "src/server/api/trpc";
+import { clerkClient } from "@clerk/nextjs";
+import { TRPCError } from "@trpc/server";
+import { filterUserForClient } from "src/server/helpers/filterUserForClient"
 // import { z } from "zod";
 
 
-// export const postsRouter = createTRPCRouter({
+export const sheetsRouter = createTRPCRouter({
 
-//   getAll: publicProcedure.query( async ({ ctx }) => {
-//     const posts = await ctx.prisma.post.findMany({
-//         take: 100,
-//         orderBy: [
-//             {createdAt: "desc"}
-//         ]
-//     });
+  getAll: publicProcedure.query( async ({ ctx }) => {
+    const sheets = await ctx.prisma.sheet.findMany({
+        take: 100,
+        orderBy: [
+            {createdAt: "desc"}
+        ]
+    });
+    
+    // Find User on Clerk
 
-//     const users = (
-//         await clerkClient.users.getUserList({
-//             userId: posts.map((post) => post.authorId)
-//         })
-//     ).map(filterUserForClient)
+    const users = (
+        await clerkClient.users.getUserList({
+            userId: sheets.map((sheet) => sheet.authorEmail)
+        })
+    ).map(filterUserForClient)
 
-//     console.log(users)
+    console.log(users)
 
-//     return posts.map((post) => {
-//         const author = users.find((user) => user.id === post.authorId)
+    // Filter DB entries for found User
 
-//         if (!author || !author.username) throw new TRPCError({
-//             code: "INTERNAL_SERVER_ERROR", 
-//             message: "Author for Post not found"
-//         })
+    return sheets.map((sheet) => {
+        const author = users.find((user) => user.emailAddress === sheet.authorEmail)
 
-//     return {
-//         post, 
-//         author
-//      };
+        if (!author || !author.username) throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR", 
+            message: "Author for Sheet not found"
+        })
+
+        return {
+            sheets, 
+            author
+        };
         
     
-//     })
+    })
 
 //   }),
 
@@ -66,3 +70,5 @@
 
 //    })
 // })
+
+
