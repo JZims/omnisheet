@@ -37,8 +37,8 @@ export const sheetsRouter = createTRPCRouter({
         })
 
         return {
-            sheets, 
-            author
+            sheets
+            
         };
         
     

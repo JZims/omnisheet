@@ -4,54 +4,66 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import NavBar from "~/components/navbar";
 import Head from "next/head"; 
-import { api } from "~/utils/api";
-// import { useState } from "react";
+import { api, RouterOutputs } from "~/utils/api";
+import { useState } from "react";
 
 
 
 export default function Welcome() {
 
-    // const [gameSystem, setGameSystem] = useState("")
+    const [gameSystem, setGameSystem] = useState("")
     const {isSignedIn, isLoaded, user} = useUser()
     const {sessionId} = useAuth()
 
-    // const fetchSheetsFromApi = async () =>{
 
-    // }
+    const SystemDropdown = () => {
 
-    // const Dropdown = () => {
 
-    //   const handleSysChange = (event: Object) => {
+      return (
+        <>
+          <details className="dropdown mb-32">
+            <summary className="m-1 btn">Game System</summary>
+            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+              <li id="dnd5e" onClick={(e) => console.log(e.target)}> <a>D&D 5E</a></li>
+              <li id="fate" onClick={(e) => console.log(e.target)}><a>FATE</a></li>
+            </ul>
+          </details>
+      </>
+      )
 
-    //     setGameSystem(event.target.id)
+    }
+
+    type UserSheet = RouterOutputs["sheets"]["getAll"][number]
+
+    const SheetsDropdown = ( props: UserSheet ) => {
+
+      const { sheets, author } = props;
+
+      if (author.username){
+        const { data, isLoading: sheetsLoaded } = api.sheets.getAll.useQuery()
+
+      }
+        
+
+      return (
+        <>
+          <details className="dropdown mb-32">
+            <summary className="m-1 btn">Game System</summary>
+            <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+              <li> Stuff goes here!</li>
+            </ul>
+          </details>
+      </>
+      )
+
+    }
 
 
         
-    //   }
+      
 
-    //   return (
-    //     <>
-    //       <details className="dropdown mb-32">
-    //         <summary className="m-1 btn">Game System</summary>
-    //         <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-    //           <li ><a onClick={handleSysChange} id="dnd5e">D&D 5E</a></li>
-    //           <li ><a onClick={handleSysChange} id="fate">FATE</a></li>
-    //         </ul>
-    //       </details>
-    //   </>
-    //   )
 
-    // }
 
-    // Fetch for Sheets from the logged-in User
-    /* Need to pass User for backend filter, then filter for selected pages using state of 
-        selected sysrem. Store selected state in a cookie */
-
-    const userSheets = async () => {
-        const { data, isLoading: sheetsLoaded } = api.sheets.getAll.useQuery()
-
-        console.log(data)
-    }
 
     if (!isSignedIn && !sessionId && isLoaded) {
 
@@ -64,7 +76,8 @@ export default function Welcome() {
         )
     } else if (isLoaded === true) {
 
-  
+        console.log(userSheets())
+        
         return (
           <>
             <NavBar />
@@ -78,8 +91,10 @@ export default function Welcome() {
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 
                 <p>Here&apos;s your homepage!</p>
-
-               {/* <Dropdown /> */}
+                <SystemDropdown />
+                <br/>
+                { gameSystem != "" ? <SheetsDropdown /> : null }
+              
                 
               </div>
             </main>
