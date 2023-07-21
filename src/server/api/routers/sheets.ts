@@ -24,8 +24,7 @@ export const sheetsRouter = createTRPCRouter({
         })
     ).map(filterUserForClient)
 
-    console.log(users)
-
+  
     // Filter DB entries for found User
 
     return sheets.map((sheet) => {

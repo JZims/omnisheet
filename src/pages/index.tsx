@@ -4,7 +4,7 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import NavBar from "~/components/navbar";
 import Head from "next/head"; 
-import { api, RouterOutputs } from "~/utils/api";
+import { api} from "~/utils/api";
 import { useState } from "react";
 
 
@@ -15,9 +15,10 @@ export default function Welcome() {
     const {isSignedIn, isLoaded, user} = useUser()
     const {sessionId} = useAuth()
 
+    
+
 
     const SystemDropdown = () => {
-
 
       return (
         <>
@@ -25,7 +26,7 @@ export default function Welcome() {
             <summary className="m-1 btn">Game System</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               <li id="dnd5e" onClick={(e) => console.log(e.target)}> <a>D&D 5E</a></li>
-              <li id="fate" onClick={(e) => console.log(e.target)}><a>FATE</a></li>
+              <li ><a id="fate" onClick={(e) => setGameSystem(e.currentTarget.id)}>FATE</a></li>
             </ul>
           </details>
       </>
@@ -33,23 +34,32 @@ export default function Welcome() {
 
     }
 
-    type UserSheet = RouterOutputs["sheets"]["getAll"][number]
 
-    const SheetsDropdown = ( props: UserSheet ) => {
+    const SheetsDropdown = () => {
 
-      const { sheets, author } = props;
+      const { data } = api.sheets.getAll.useQuery()
 
-      if (author.username){
-        const { data, isLoading: sheetsLoaded } = api.sheets.getAll.useQuery()
+        if (data) {
 
-      }
-        
+        const filteredSheets = data[0]?.sheets.map((sheet) => {
+          if (sheet.system === gameSystem) return sheet
 
+          
+        })
+
+    
       return (
         <>
           <details className="dropdown mb-32">
             <summary className="m-1 btn">Game System</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+              { filteredSheets?.map(sheet => {
+                return (
+                <li>{ sheet?.character?.toString() }</li> 
+              )
+
+                }) 
+              }
               <li> Stuff goes here!</li>
             </ul>
           </details>
@@ -57,12 +67,21 @@ export default function Welcome() {
       )
 
     }
-
-
+  }
         
-      
+    const Feed = () => {
 
+      return (
 
+        <div>
+            <SystemDropdown />
+            <br/>
+            { gameSystem != "" && <SheetsDropdown /> }
+        </div>
+
+      )
+    
+    }
 
 
     if (!isSignedIn && !sessionId && isLoaded) {
@@ -76,8 +95,6 @@ export default function Welcome() {
         )
     } else if (isLoaded === true) {
 
-        console.log(userSheets())
-        
         return (
           <>
             <NavBar />
@@ -91,10 +108,8 @@ export default function Welcome() {
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 
                 <p>Here&apos;s your homepage!</p>
-                <SystemDropdown />
-                <br/>
-                { gameSystem != "" ? <SheetsDropdown /> : null }
-              
+               
+                <Feed />
                 
               </div>
             </main>
