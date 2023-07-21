@@ -4,6 +4,7 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import NavBar from "~/components/navbar";
 import Head from "next/head"; 
+import { api } from "~/utils/api";
 // import { useState } from "react";
 
 
@@ -11,7 +12,7 @@ import Head from "next/head";
 export default function Welcome() {
 
     // const [gameSystem, setGameSystem] = useState("")
-    const {isSignedIn, isLoaded} = useUser()
+    const {isSignedIn, isLoaded, user} = useUser()
     const {sessionId} = useAuth()
 
     // const fetchSheetsFromApi = async () =>{
@@ -41,6 +42,16 @@ export default function Welcome() {
     //   )
 
     // }
+
+    // Fetch for Sheets from the logged-in User
+    /* Need to pass User for backend filter, then filter for selected pages using state of 
+        selected sysrem. Store selected state in a cookie */
+
+    const userSheets = async () => {
+        const { data, isLoading: sheetsLoaded } = api.sheets.getAll.useQuery()
+
+        console.log(data)
+    }
 
     if (!isSignedIn && !sessionId && isLoaded) {
 
