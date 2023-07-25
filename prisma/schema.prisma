@@ -24,8 +24,8 @@ model User {
 model Sheet {
   id    Int   @id @default(autoincrement())
   createdAt   DateTime
-  authorEmail String 
-  author    User    @relation(fields: [authorEmail], references: [email], onDelete: Cascade)
+  authorName String 
+  author    User    @relation(fields: [authorName], references: [username], onDelete: Cascade)
   system    String
   character Json
 }

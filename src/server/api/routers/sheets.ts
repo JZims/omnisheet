@@ -9,10 +9,11 @@ import { filterUserForClient } from "src/server/helpers/filterUserForClient"
 export const sheetsRouter = createTRPCRouter({
 
   getAll: publicProcedure.query( async ({ ctx }) => {
+    console.log(ctx)
     const sheets = await ctx.prisma.sheet.findMany({
         take: 100,
         orderBy: [
-            {createdAt: "desc"}
+            {id: "desc"}
         ]
     });
     
@@ -20,23 +21,23 @@ export const sheetsRouter = createTRPCRouter({
 
     const users = (
         await clerkClient.users.getUserList({
-            userId: sheets.map((sheet) => sheet.authorEmail)
+            userId: sheets.map((sheet) => sheet.authorName)
         })
     ).map(filterUserForClient)
-
-  
+    
     // Filter DB entries for found User
 
     return sheets.map((sheet) => {
-        const author = users.find((user) => user.emailAddress === sheet.authorEmail)
 
+        const author = users.find((user) => user.username === sheet.authorName)
+        console.log(sheet)
         if (!author || !author.username) throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR", 
             message: "Author for Sheet not found"
         })
 
         return {
-            sheets
+            sheets,
             
         };
         

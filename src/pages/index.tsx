@@ -4,7 +4,7 @@ import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import NavBar from "~/components/navbar";
 import Head from "next/head"; 
-import { api} from "~/utils/api";
+import { api } from "~/utils/api";
 import { useState } from "react";
 
 
@@ -25,8 +25,8 @@ export default function Welcome() {
           <details className="dropdown mb-32">
             <summary className="m-1 btn">Game System</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-              <li id="dnd5e" onClick={(e) => console.log(e.target)}> <a>D&D 5E</a></li>
-              <li ><a id="fate" onClick={(e) => setGameSystem(e.currentTarget.id)}>FATE</a></li>
+              <li> <a id="dnd5e" onClick={(e) => {setGameSystem(e.currentTarget.id)}}>D&D 5E</a></li>
+              <li ><a id="fate" onClick={(e) => {setGameSystem(e.currentTarget.id)}}>FATE</a></li>
             </ul>
           </details>
       </>
