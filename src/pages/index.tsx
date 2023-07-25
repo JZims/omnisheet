@@ -37,25 +37,28 @@ export default function Welcome() {
 
     const SheetsDropdown = () => {
 
-      const { data } = api.sheets.getAll.useQuery()
+      if ( isLoaded && user && user.username){ 
 
-        if (data) {
+      const { data } = api.sheets.getAll.useQuery({userName: user.username, userId: user.id})
 
-        const filteredSheets = data[0]?.sheets.map((sheet) => {
+      if (data) {
+
+      const filteredSheets = data[0]?.sheets.map((sheet) => {
           if (sheet.system === gameSystem) return sheet
 
           
         })
+      
+        
 
-    
       return (
         <>
           <details className="dropdown mb-32">
-            <summary className="m-1 btn">Game System</summary>
+            <summary className="m-1 btn">Characters</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map(sheet => {
                 return (
-                <li>{ sheet?.character?.toString() }</li> 
+                <li>{ JSON.parse(sheet?.character) }</li> 
               )
 
                 }) 
@@ -67,6 +70,7 @@ export default function Welcome() {
       )
 
     }
+  }
   }
         
     const Feed = () => {
