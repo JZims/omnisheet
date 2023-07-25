@@ -20,7 +20,7 @@ export const sheetsRouter = createTRPCRouter({
       .nullish(),
   )
   
-  .query( async ({ ctx, input }) => {
+  .query( async ({ ctx }) => {
         const sheets = await ctx.prisma.sheet.findMany({
         take: 100,
         orderBy: [
