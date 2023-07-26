@@ -1,6 +1,6 @@
-import type Sheet from "../../interfaces/sheet"
+import type Character from "../../interfaces/character"
 
-const newSheet: Sheet = {
+const newSheet: Character = {
     id: "qceqxqwx",
     charFirstName: "Bob", 
     charLastName: "Guy",

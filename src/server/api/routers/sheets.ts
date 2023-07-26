@@ -6,6 +6,8 @@ import { filterUserForClient } from "src/server/helpers/filterUserForClient"
 import { z } from "zod";
 
 
+
+
 export const sheetsRouter = createTRPCRouter({
 
 //Gets 100 results from ALL sheets in the Database
@@ -20,45 +22,45 @@ export const sheetsRouter = createTRPCRouter({
       .nullish(),
   )
   
-  .query( async ({ ctx}) => {
+  .query( async ({ ctx }) => {
         const sheets = await ctx.prisma.sheet.findMany({
-        take: 100,
-        orderBy: [
-            {id: "desc"}
-        ]
-    });
+            take: 100,
+            orderBy: [
+                {id: "desc"}
+            ]
+        });
     
-  
-    // Find User on Clerk
 
-    const users = (
-        await clerkClient.users.getUserList({
-            username: sheets.map((sheet) => sheet.authorName)
-        })
-    ).map(filterUserForClient)
-    
+    // Find Users on Clerk
+
+        const users = (
+            await clerkClient.users.getUserList({
+                username: sheets.map((sheet) => sheet.authorName)
+            })
+        ).map(filterUserForClient)
+        
 
     
     
     // Filter DB entries for found User
 
-    return sheets.map((sheet) => {
+        return sheets.map((sheet) => {
 
-        const author = users.find((user) => user.username === sheet.authorName)
-       
-        if (!author || !author.username) throw new TRPCError({
-            code: "INTERNAL_SERVER_ERROR", 
-            message: "Author for Sheet not found"
-        })
+            const author = users.find((user) => user.username === sheet.authorName)
+        
+            if (!author || !author.username) throw new TRPCError({
+                code: "INTERNAL_SERVER_ERROR", 
+                message: "Author for Sheet not found"
+            })
 
-        return {
-            sheets,
-            author
-        };
+            return {
+                sheets,
+                author
+            };
         
     
+        })
     })
-})
 })
 //   }),
 

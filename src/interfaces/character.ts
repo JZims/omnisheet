@@ -1,5 +1,5 @@
 
-interface Sheet {
+interface Character {
     id: string,
     charFirstName: string, 
     charLastName: string,
@@ -8,4 +8,4 @@ interface Sheet {
     classes: string[],
 }
 
-export default Sheet
+export default Character
