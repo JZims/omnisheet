@@ -6,6 +6,7 @@ import NavBar from "~/components/navbar";
 import Head from "next/head"; 
 import { api } from "~/utils/api";
 import { useState } from "react";
+import { Prisma } from "@prisma/client";
 
 
 
@@ -41,15 +42,15 @@ export default function Welcome() {
 
       const { data } = api.sheets.getAll.useQuery({userName: user.username, userId: user.id})
 
-      if (data) {
+      if (data && data[0]) {
 
-      const filteredSheets = data[0]?.sheets.map((sheet) => {
+       
+      const filteredSheets = data[0].sheets.filter((sheet) => {
           if (sheet.system === gameSystem) return sheet
 
-          
         })
       
-        
+      
 
       return (
         <>
@@ -57,14 +58,18 @@ export default function Welcome() {
             <summary className="m-1 btn">Characters</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
-                console.log(sheet)
+
+                const charData = JSON.stringify(sheet.character as string)
                 return (
-                <li key={index}>Sheet Placeholder for </li> 
+                <li key={index}> 
+                  <a>
+                   {JSON.parse(charData).charFirstName + " " + JSON.parse(charData).charLastName} 
+                   </a>
+                </li> 
               )
 
                 }) 
               }
-              <li> Stuff goes here!</li>
             </ul>
           </details>
       </>
