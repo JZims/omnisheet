@@ -6,6 +6,7 @@ import NavBar from "~/components/navbar";
 import Head from "next/head"; 
 import { api } from "~/utils/api";
 import { useState } from "react";
+import { Prisma } from "@prisma/client";
 
 
 
@@ -41,15 +42,27 @@ export default function Welcome() {
 
       if ( isLoaded && user && user.username){ 
 
-      const { data } = api.sheets.getAll.useQuery({userName: user.username, userId: user.id})
+      const { data } = api.sheets.getSheets.useQuery({userName: user.username, userId: user.id})
 
-      if (data && data[0]) {
-       
-      const filteredSheets = data[0].sheets.filter((sheet) => {
-          if (sheet.system === gameSystem) return sheet
+      if (data) {
+        
+      const filteredSheets = data.sheets.filter((sheet) => {
 
+          if (sheet.system === gameSystem) {
+
+            if (sheet.character && Array.isArray(sheet.character)){
+
+              sheet.character.map((char) => {
+                  if( typeof char === "object" ){
+                    return char 
+                  }
+              }) 
+            }
+           
+            
+            return sheet
+          }
         })
-      
       
 
       return (
@@ -59,15 +72,27 @@ export default function Welcome() {
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
 
-              console.log(sheet)
-
-                return (
-                <li key={index}> 
-                  <a>
-                   Placeholder 
-                   </a>
-                </li> 
-              )
+                if(!isLoaded ) {
+                  return null
+                }
+                
+                else if ( 
+                  typeof sheet.character === "object" && 
+                  sheet.character && 
+                  sheet.character !== null &&
+                  sheet.character !== undefined
+                  ){
+                  console.log(sheet.character.charFirstName)
+                  return (
+                    <li key={index}> 
+                      <a>
+                       {sheet.character.charFirstName} {sheet.character.charLastName}
+                      </a>
+                    </li> 
+                  )
+                }
+            
+                
 
                 }) 
               }

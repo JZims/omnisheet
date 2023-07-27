@@ -1,4 +1,6 @@
 
+
+
 interface Character {
     id: string,
     charFirstName: string, 
