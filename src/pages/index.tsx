@@ -6,7 +6,7 @@ import NavBar from "~/components/navbar";
 import Head from "next/head"; 
 import { api } from "~/utils/api";
 import { useState } from "react";
-import { Prisma } from "@prisma/client";
+
 
 
 
@@ -76,13 +76,7 @@ export default function Welcome() {
                   return null
                 }
                 
-                else if ( 
-                  typeof sheet.character === "object" && 
-                  sheet.character && 
-                  sheet.character !== null &&
-                  sheet.character !== undefined
-                  ){
-                  console.log(sheet.character.charFirstName)
+        
                   return (
                     <li key={index}> 
                       <a>
@@ -90,7 +84,7 @@ export default function Welcome() {
                       </a>
                     </li> 
                   )
-                }
+                
             
                 
 
