@@ -2,7 +2,6 @@
 import { createTRPCRouter, publicProcedure } from "src/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { filterCharacterSheet } from "~/server/helpers/filterCharacterSheet";
 
 
 

@@ -7,6 +7,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { LoadingPage } from "~/components/loading";
+import { JSONValue } from "superjson/dist/types";
 
 
 
@@ -15,7 +16,7 @@ import { LoadingPage } from "~/components/loading";
 export default function Welcome() {
 
     const [gameSystem, setGameSystem] = useState("")
-    const [highightedChar, setHighlightedChar] = useState({})
+    const [highightedChar, setHighlightedChar] = useState<JSONValue>({})
     const {isSignedIn, isLoaded, user} = useUser()
     const { sessionId } = useAuth()
 
@@ -121,7 +122,7 @@ export default function Welcome() {
 
       return (
         <div>
-          <h1> You chose {highightedChar.charFirstName} {highightedChar.charLastName}</h1>
+          <h1> You chose {highightedChar?.charFirstName} {highightedChar?.charLastName}</h1>
         </div>
       )
 
@@ -155,7 +156,7 @@ export default function Welcome() {
                
                 <Feed />
 
-                { Object.keys(highightedChar).length >= 1 ? <PreviewWindow /> : null}
+                { highightedChar?.charLastName ? <PreviewWindow /> : null}
                 
               </div>
             </main>
