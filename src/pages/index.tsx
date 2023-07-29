@@ -6,6 +6,7 @@ import NavBar from "~/components/navbar";
 import Head from "next/head"; 
 import { api } from "~/utils/api";
 import { useState } from "react";
+import { LoadingPage } from "~/components/loading";
 
 
 
@@ -73,7 +74,7 @@ export default function Welcome() {
               { filteredSheets?.map((sheet, index) => {
 
                 if(!isLoaded ) {
-                  return null
+                  return <LoadingPage />
                 }
                 
         
