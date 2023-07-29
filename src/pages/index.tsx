@@ -15,9 +15,9 @@ import { LoadingPage } from "~/components/loading";
 export default function Welcome() {
 
     const [gameSystem, setGameSystem] = useState("")
-    const [highightedChar, setHighlightedChar] = useState("")
+    const [highightedChar, setHighlightedChar] = useState({})
     const {isSignedIn, isLoaded, user} = useUser()
-    const {sessionId} = useAuth()
+    const { sessionId } = useAuth()
 
     
 
@@ -81,7 +81,7 @@ export default function Welcome() {
                 
                   return (
                     <li key={index}> 
-                      <a id={sheet.id.toString()} onClick={(e) => {setHighlightedChar(e.currentTarget.id)}}>
+                      <a id={sheet.id.toString()} onClick={(e) => {setHighlightedChar(sheet.character)}}>
                        {sheet.character?.charFirstName} {sheet.character?.charLastName}
                       </a>
                     </li> 
@@ -115,6 +115,18 @@ export default function Welcome() {
     
     }
 
+    const PreviewWindow = () => {
+
+      console.log(highightedChar)
+
+      return (
+        <div>
+          <h1> You chose {highightedChar.charFirstName} {highightedChar.charLastName}</h1>
+        </div>
+      )
+
+    }
+
 
     if (!isSignedIn && !sessionId && isLoaded) {
 
@@ -136,12 +148,14 @@ export default function Welcome() {
               <meta name="description" content="created by Josh Zimmerman" />
               <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+            <main className="flex flex-row min-h-screen items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 
                 <p>Here&apos;s your homepage!</p>
                
                 <Feed />
+
+                { Object.keys(highightedChar).length >= 1 ? <PreviewWindow /> : null}
                 
               </div>
             </main>
