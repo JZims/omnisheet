@@ -46,7 +46,8 @@ export default function Welcome() {
       const { data } = api.sheets.getSheets.useQuery({userName: user.username, userId: user.id})
 
       if (data) {
-        
+
+      
       const filteredSheets = data.sheets.filter((sheet) => {
 
           if (sheet.system === gameSystem) {
@@ -72,22 +73,22 @@ export default function Welcome() {
             <summary className="m-1 btn">Characters</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
+        
 
                 if(!isLoaded ) {
                   return <LoadingPage />
                 }
                 
-        
                   return (
                     <li key={index}> 
-                      <a>
-                       {sheet.character.charFirstName} {sheet.character.charLastName}
+                      <a id={sheet.id.toString()} onClick={(e) => {setHighlightedChar(e.currentTarget.id)}}>
+                       {sheet.character?.charFirstName} {sheet.character?.charLastName}
                       </a>
                     </li> 
                   )
                 
             
-                
+                  
 
                 }) 
               }

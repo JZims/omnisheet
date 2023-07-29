@@ -2,6 +2,7 @@
 import { createTRPCRouter, publicProcedure } from "src/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+import { filterCharacterSheet } from "~/server/helpers/filterCharacterSheet";
 
 
 
@@ -26,15 +27,17 @@ export const sheetsRouter = createTRPCRouter({
         if(input && input.userName){
     
             // Find Sheets associated with logged in User
-            const sheets = await ctx.prisma.sheet.findMany({
+            const sheets = ( 
+                await ctx.prisma.sheet.findMany({
     
                 where:{
                     authorName:{
                         equals: input.userName 
                         }
                      }
-                 })
-                 
+                 }))
+             
+            
             
              return {
                 sheets,

@@ -1,7 +1,9 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  output = "../node_modules/.prisma/client"
+
 }
 datasource db {
   provider = "mysql"
@@ -27,5 +29,5 @@ model Sheet {
   authorName String 
   author    User    @relation(fields: [authorName], references: [username], onDelete: Cascade)
   system    String
-  character Json
+  character Json?  @db.Json
 }

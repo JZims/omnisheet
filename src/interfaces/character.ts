@@ -1,7 +1,7 @@
 
 
 
-interface Character {
+export type Character  = {
     id: string,
     charFirstName: string, 
     charLastName: string,
@@ -10,4 +10,3 @@ interface Character {
     classes: string[],
 }
 
-export default Character
