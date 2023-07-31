@@ -1,11 +1,13 @@
+import { JSONValue } from "superjson/dist/types"
 
 
-export type Character = {
+type Character = {
     id: string,
     charFirstName: string, 
     charLastName: string,
     charLevel: number, 
     xpPoints: number, 
-    classes: string[],
-}
+    classes: string[] | undefined,
+} 
 
+export default Character

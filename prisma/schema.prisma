@@ -29,5 +29,5 @@ model Sheet {
   authorName String 
   author    User    @relation(fields: [authorName], references: [username], onDelete: Cascade)
   system    String
-  character Json?  @db.Json
+  character Json @db.Json
 }

@@ -7,7 +7,9 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { LoadingPage } from "~/components/loading";
-import type { Character } from "~/types/character";
+import Character from "~/types/character";
+import { Sheet } from "~/types/sheets";
+
 
 
 
@@ -16,7 +18,7 @@ import type { Character } from "~/types/character";
 export default function Welcome() {
 
     const [gameSystem, setGameSystem] = useState("")
-    const [highightedChar, setHighlightedChar] = useState({})
+    const [highightedChar, setHighlightedChar] = useState<Character | undefined>(undefined)
     const {isSignedIn, isLoaded, user} = useUser()
     const { sessionId } = useAuth()
 
@@ -51,20 +53,10 @@ export default function Welcome() {
 
       if (data) {
 
-      
-      const filteredSheets = data.sheets.filter((sheet) => {
+
+      const filteredSheets: Sheet[] = data.sheets.filter((sheet) => {
 
           if (sheet.system === gameSystem) {
-
-            if (sheet.character && Array.isArray(sheet.character)){
-
-              sheet.character.map((char) => {
-                  if( typeof char === "object" ){
-                    return char 
-                  }
-              }) 
-            }
-           
             
             return sheet
           }
@@ -78,21 +70,25 @@ export default function Welcome() {
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
                   
-                  
+                
 
-                if(!isLoaded ) {
+                if(!isLoaded) {
                   return <LoadingPage />
                 }
-                console.log(JSON.parse(sheet.character))
-
+                 if(sheet.character != null ){
                   return (
                     <li key={index}> 
                       <a id={sheet.id.toString()} onClick={() => {setHighlightedChar(sheet.character)}}>
-                       {charInfo.charFirstName} {charInfo.charLastName}
+                       {sheet.character.charFirstName} {sheet.character?.charLastName}
                       </a>
                     </li> 
                   )
                 
+
+                 }
+
+
+                 
             
                   
 

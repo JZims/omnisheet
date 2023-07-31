@@ -1,11 +1,12 @@
-import type { User } from "@prisma/client"
-import type { Character } from "./character"
+
+import { JSONValue } from "superjson/dist/types"
+import Character from "./character"
+
 
 export type Sheet = {
     id: number, 
-    createdAt: string,
+    createdAt: Date,
     authorName: string,
-    author: User,
     system: string,
-    character: Character
+    character: Character | JSONValue
   }

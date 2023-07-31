@@ -1,4 +1,4 @@
-import type { Character } from "~/types/character"
+import Character from "~/types/character"
 
 
 
