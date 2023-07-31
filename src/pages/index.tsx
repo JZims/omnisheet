@@ -7,7 +7,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { LoadingPage } from "~/components/loading";
-import { JSONValue } from "superjson/dist/types";
+import type { Character } from "~/types/character";
 
 
 
@@ -16,7 +16,7 @@ import { JSONValue } from "superjson/dist/types";
 export default function Welcome() {
 
     const [gameSystem, setGameSystem] = useState("")
-    const [highightedChar, setHighlightedChar] = useState<JSONValue>({})
+    const [highightedChar, setHighlightedChar] = useState({})
     const {isSignedIn, isLoaded, user} = useUser()
     const { sessionId } = useAuth()
 
@@ -39,8 +39,11 @@ export default function Welcome() {
 
     }
 
+    
 
     const SheetsDropdown = () => {
+
+    
 
       if ( isLoaded && user && user.username){ 
 
@@ -74,16 +77,18 @@ export default function Welcome() {
             <summary className="m-1 btn">Characters</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
-        
+                  
+                  
 
                 if(!isLoaded ) {
                   return <LoadingPage />
                 }
-                
+                console.log(JSON.parse(sheet.character))
+
                   return (
                     <li key={index}> 
-                      <a id={sheet.id.toString()} onClick={(e) => {setHighlightedChar(sheet.character)}}>
-                       {sheet.character?.charFirstName} {sheet.character?.charLastName}
+                      <a id={sheet.id.toString()} onClick={() => {setHighlightedChar(sheet.character)}}>
+                       {charInfo.charFirstName} {charInfo.charLastName}
                       </a>
                     </li> 
                   )
@@ -118,7 +123,7 @@ export default function Welcome() {
 
     const PreviewWindow = () => {
 
-      console.log(highightedChar)
+      // console.log(highightedChar)
 
       return (
         <div>

@@ -1,7 +1,6 @@
 
 
-
-export type Character  = {
+export type Character = {
     id: string,
     charFirstName: string, 
     charLastName: string,
