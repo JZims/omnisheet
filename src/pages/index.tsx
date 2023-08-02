@@ -53,6 +53,9 @@ export default function Welcome() {
 
       if (data) {
 
+       
+
+
 
       const filteredSheets: Sheet[] = data.sheets.filter((sheet) => {
 
@@ -70,19 +73,20 @@ export default function Welcome() {
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
                   
-                
+                  const characterData = sheet.character as Character
 
                 if(!isLoaded) {
                   return <LoadingPage />
                 }
                  if(sheet.character != null ){
                   
-                  console.log(sheet.character)
+                  console.log(characterData.charFirstName)
 
                   return (
                     <li key={index}> 
-                      <a id={sheet.id.toString()} onClick={() => {setHighlightedChar(sheet.character)}}>
-                       {sheet.character.charFirstName} {sheet.character?.charLastName}
+                      <a id={sheet.id.toString()} onClick={() => {setHighlightedChar(characterData)}}>
+                      
+                       {characterData.charFirstName} {characterData.charLastName}
                       </a>
                     </li> 
                   )
