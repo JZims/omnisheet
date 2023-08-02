@@ -76,6 +76,9 @@ export default function Welcome() {
                   return <LoadingPage />
                 }
                  if(sheet.character != null ){
+                  
+                  console.log(sheet.character)
+
                   return (
                     <li key={index}> 
                       <a id={sheet.id.toString()} onClick={() => {setHighlightedChar(sheet.character)}}>
