@@ -1,7 +1,7 @@
 
 
 
-type Character = {
+export type Character = {
     id: string,
     charFirstName: string, 
     charLastName: string,
@@ -10,4 +10,3 @@ type Character = {
     classes: string[] | undefined,
 } 
 
-export default Character

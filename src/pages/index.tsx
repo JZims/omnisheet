@@ -7,8 +7,8 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { LoadingPage } from "~/components/loading";
-import Character from "~/types/character";
-import { Sheet } from "~/types/sheets";
+import type {Character} from "~/types/character";
+import type { Sheet } from "~/types/sheets";
 
 
 
@@ -45,16 +45,12 @@ export default function Welcome() {
 
     const SheetsDropdown = () => {
 
-    
 
       if ( isLoaded && user && user.username){ 
 
       const { data } = api.sheets.getSheets.useQuery({userName: user.username, userId: user.id})
 
       if (data) {
-
-       
-
 
 
       const filteredSheets: Sheet[] = data.sheets.filter((sheet) => {
@@ -76,16 +72,14 @@ export default function Welcome() {
                   const characterData = sheet.character as Character
 
                 if(!isLoaded) {
-                  return <LoadingPage />
+                  return <LoadingPage key={index}/>
                 }
                  if(sheet.character != null ){
-                  
-                  console.log(characterData.charFirstName)
-
+  
                   return (
                     <li key={index}> 
-                      <a id={sheet.id.toString()} onClick={() => {setHighlightedChar(characterData)}}>
-                      
+                      <a key={index} id={sheet.id.toString()} onClick={() => {setHighlightedChar(characterData)}}>
+                    
                        {characterData.charFirstName} {characterData.charLastName}
                       </a>
                     </li> 
@@ -94,10 +88,6 @@ export default function Welcome() {
 
                  }
 
-
-                 
-            
-                  
 
                 }) 
               }

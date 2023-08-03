@@ -1,6 +1,6 @@
 
-import { JSONValue } from "superjson/dist/types"
-import Character from "./character"
+import type { JSONValue } from "superjson/dist/types"
+import type { Character } from "./character"
 
 
 export type Sheet = {

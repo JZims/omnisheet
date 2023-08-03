@@ -1,4 +1,4 @@
-import type Character from "../../types/character"
+import type { Character } from "../../types/character"
 
 const newSheet: Character = {
     id: "qceqxqwx",
