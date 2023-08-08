@@ -7,6 +7,6 @@ export type Character = {
     charLastName: string,
     charLevel: number, 
     xpPoints: number, 
-    classes: string[] | undefined,
+    classes: string[],
 } 
 

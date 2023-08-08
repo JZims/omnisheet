@@ -10,7 +10,6 @@ import { z } from "zod";
 
 export const sheetsRouter = createTRPCRouter({
 
-    //Gets 100 results from ALL sheets in the Database
     
       getSheets: publicProcedure
       .input(

@@ -41,17 +41,13 @@ export default function Welcome() {
 
     }
 
-    
-
     const SheetsDropdown = () => {
-
 
       if ( isLoaded && user && user.username){ 
 
       const { data } = api.sheets.getSheets.useQuery({userName: user.username, userId: user.id})
 
       if (data) {
-
 
       const filteredSheets: Sheet[] = data.sheets.filter((sheet) => {
 
@@ -60,7 +56,6 @@ export default function Welcome() {
             return sheet
           }
         })
-      
 
       return (
         <>
@@ -84,11 +79,7 @@ export default function Welcome() {
                       </a>
                     </li> 
                   )
-                
-
                  }
-
-
                 }) 
               }
             </ul>
@@ -116,7 +107,7 @@ export default function Welcome() {
 
     const PreviewWindow = () => {
 
-      // console.log(highightedChar)
+
 
       return (
         <div>
