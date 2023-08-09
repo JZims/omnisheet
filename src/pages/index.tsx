@@ -9,6 +9,7 @@ import { useState } from "react";
 import { LoadingPage } from "~/components/loading";
 import type {Character} from "~/types/character";
 import type { Sheet } from "~/types/sheets";
+import NewNav from "~/components/newnav";
 
 
 
@@ -131,7 +132,7 @@ export default function Welcome() {
 
         return (
           <>
-            <NavBar />
+            <NewNav />
                
             <Head>
               <title>Omnisheet</title>
