@@ -17,7 +17,7 @@ function classNames(...classes) {
 
 export default function NewNav(props?: {profileImgUrl: string}) {
 
-  console.log(userProfile)
+
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -81,7 +81,7 @@ export default function NewNav(props?: {profileImgUrl: string}) {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={userProfile}
+                        src={props?.profileImgUrl}
                         alt=""
                       />
                     </Menu.Button>

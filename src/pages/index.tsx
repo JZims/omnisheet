@@ -128,13 +128,13 @@ export default function Welcome() {
             </div>
             
         )
-    } else if (isLoaded === true) {
+    } else if (isLoaded === true && user?.profileImageUrl) {
 
       console.log(user?.profileImageUrl)
 
         return (
           <>
-            <NewNav userProfile={user?.profileImageUrl} />
+            <NewNav profileImgUrl={user?.profileImageUrl} />
                
             <Head>
               <title>Omnisheet</title>
