@@ -130,9 +130,11 @@ export default function Welcome() {
         )
     } else if (isLoaded === true) {
 
+      console.log(user?.profileImageUrl)
+
         return (
           <>
-            <NewNav />
+            <NewNav userProfile={user?.profileImageUrl} />
                
             <Head>
               <title>Omnisheet</title>
