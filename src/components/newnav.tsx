@@ -15,7 +15,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NewNav(userProfile?: string) {
+export default function NewNav(props?: {profileImgUrl: string}) {
 
   console.log(userProfile)
 
