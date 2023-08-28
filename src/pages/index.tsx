@@ -2,12 +2,11 @@
 
 import { useUser, useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-import NavBar from "~/components/navbar";
 import Head from "next/head"; 
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { LoadingPage } from "~/components/loading";
-import type {Character} from "~/types/character";
+import type { Character } from "~/types/character";
 import type { Sheet } from "~/types/sheets";
 import NewNav from "~/components/newnav";
 import MultipleTextFields from "~/components/sheetinput";
