@@ -10,6 +10,7 @@ import { LoadingPage } from "~/components/loading";
 import type {Character} from "~/types/character";
 import type { Sheet } from "~/types/sheets";
 import NewNav from "~/components/newnav";
+import MultipleTextFields from "~/components/sheetinput";
 
 
 
@@ -108,8 +109,6 @@ export default function Welcome() {
 
     const PreviewWindow = () => {
 
-
-
       return (
         <div>
           <h1> You chose {highightedChar?.charFirstName} {highightedChar?.charLastName}</h1>
@@ -130,7 +129,7 @@ export default function Welcome() {
         )
     } else if (isLoaded === true && user?.profileImageUrl) {
 
-      console.log(user?.profileImageUrl)
+   
 
         return (
           <>
@@ -147,6 +146,10 @@ export default function Welcome() {
                 <p>Here&apos;s your homepage!</p>
                
                 <Feed />
+
+                <div className="flex-row">
+                  <MultipleTextFields/>
+                </div>
 
                 { highightedChar?.charLastName ? <PreviewWindow /> : null}
                 

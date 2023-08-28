@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-// './nnode_modules/@clerk/types/dist/user.d.ts'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -16,8 +15,6 @@ function classNames(...classes) {
 }
 
 export default function NewNav(props?: {profileImgUrl: string}) {
-
-
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
