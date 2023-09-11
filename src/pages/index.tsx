@@ -9,7 +9,7 @@ import { LoadingPage } from "~/components/loading";
 import type { Character } from "~/types/character";
 import type { Sheet } from "~/types/sheets";
 import NewNav from "~/components/newnav";
-import MultipleTextFields from "~/components/sheetinput";
+
 
 
 
@@ -147,7 +147,7 @@ export default function Welcome() {
                 <Feed />
 
                 <div className="flex-row">
-                  <MultipleTextFields/>
+                 
                 </div>
 
                 { highightedChar?.charLastName ? <PreviewWindow /> : null}
