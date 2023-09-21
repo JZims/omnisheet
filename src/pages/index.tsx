@@ -9,7 +9,7 @@ import { LoadingPage } from "~/components/loading";
 import type { Character } from "~/types/character";
 import type { Sheet } from "~/types/sheets";
 import NewNav from "~/components/newnav";
-import DnDCharacterSheet from "~/components/dndcharactersheet";
+
 
 
 
@@ -152,9 +152,6 @@ export default function Welcome() {
                 { highightedChar?.charLastName ? <PreviewWindow /> : null}
                  
                 </div>
-
-                
-                <DnDCharacterSheet />
 
                 
               </div>
