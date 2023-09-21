@@ -1,6 +1,7 @@
 import NewNav from "~/components/newnav";
+import Link from "next/link";
 import { useState } from "react"
-import { useUser } from "@clerk/nextjs"
+import { useUser, useAuth } from "@clerk/nextjs"
 
  export default function SMultipleTextFields() {
 
@@ -34,11 +35,23 @@ import { useUser } from "@clerk/nextjs"
           );
         };
 
-        const { user } = useUser()
+        const { user, isSignedIn, isLoaded } = useUser()
+        const { sessionId } = useAuth()
 
-  return (
+    if (!isSignedIn && !sessionId && isLoaded) {
+
+          return(
+              <div>
+                  <span>Welcome to OSheet!</span>
+                  <p>Sign in <Link href="/sign-in"><strong>here!</strong></Link></p>
+              </div>
+              
+          )
+      }       
+
+   else return (
     <>
-        <NewNav />
+        <NewNav profileImgUrl={ user?.profileImageUrl ? user?.profileImageUrl: "null"}/>
     <div>
       {textFields.map(field => (
         <input
