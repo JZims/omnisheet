@@ -36,7 +36,17 @@ const DnDCharacterSheet: React.FC = () => {
           className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
         />
       </div>
-      {/* Add more fields here */}
+      <label className="block text-sm font-bold mb-2" htmlFor="characterName">
+          Character Class
+        </label>
+        <input
+          type="text"
+          id="class"
+          name="class"
+          value={characterInfo.class}
+          onChange={handleInputChange}
+          className="w-full p-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+        />
       <div className="mt-4">
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300"
