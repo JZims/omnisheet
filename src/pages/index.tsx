@@ -11,12 +11,6 @@ import type { Sheet } from "~/types/sheets";
 import NewNav from "~/components/newnav";
 
 
-
-
-
-
-
-
 export default function Welcome() {
 
     const [gameSystem, setGameSystem] = useState("")
@@ -49,7 +43,7 @@ export default function Welcome() {
 
       const { data } = api.sheets.getSheets.useQuery({userName: user.username, userId: user.id})
 
-      if (data) {
+      if (data?.sheets) {
 
       const filteredSheets: Sheet[] = data.sheets.filter((sheet) => {
 
@@ -72,7 +66,7 @@ export default function Welcome() {
                   return <LoadingPage key={index}/>
                 }
                  if(sheet.character != null ){
-  
+                  console.log(characterData)
                   return (
                     <li key={index}> 
                       <a key={index} id={sheet.id.toString()} onClick={() => {setHighlightedChar(characterData)}}>
