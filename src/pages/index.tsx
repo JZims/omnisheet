@@ -66,7 +66,7 @@ export default function Welcome() {
                   return <LoadingPage key={index}/>
                 }
                  if(sheet.character != null ){
-                  console.log(characterData)
+                  
                   return (
                     <li key={index}> 
                       <a key={index} id={sheet.id.toString()} onClick={() => {setHighlightedChar(characterData)}}>
@@ -87,7 +87,7 @@ export default function Welcome() {
   }
   }
         
-    const Feed = () => {
+    const Selection = () => {
 
       return (
 
@@ -139,7 +139,7 @@ export default function Welcome() {
                 
                 <p>Here&apos;s your homepage!</p>
                
-                <Feed />
+                <Selection />
 
                 <div className="flex-row">
 
