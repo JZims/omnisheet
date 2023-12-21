@@ -25,7 +25,7 @@ export default function Welcome() {
 
       return (
         <>
-          <details className="dropdown mb-32">
+          <details className="dropdown mb-32 col-span-1">
             <summary className="m-1 btn">Game System</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               <li> <a id="dnd5e" onClick={(e) => {setGameSystem(e.currentTarget.id)}}>D&D 5E</a></li>
@@ -55,7 +55,7 @@ export default function Welcome() {
 
       return (
         <>
-          <details className="dropdown mb-32">
+          <details className="dropdown mb-32 col-span-1 col-start-2">
             <summary className="m-1 btn">Characters</summary>
             <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
               { filteredSheets?.map((sheet, index) => {
@@ -92,21 +92,23 @@ export default function Welcome() {
 
       return (
 
-        <div>
+        <>
             <SystemDropdown />
-            <br/>
             { gameSystem != "" && <SheetsDropdown /> }
-        </div>
+        </>
 
       )
     
     }
 
     const PreviewWindow = () => {
-
+        //Render un-editable version of selected Character
       return (
-        <div>
-          <h1> You chose {highightedChar?.charFirstName} {highightedChar?.charLastName}</h1>
+        <div className=" grid grid-cols-2 grid-flow-col grid-rows-6 auto-rows-fr m-4">
+          <p> Current Character: <h1 className="font-bold text-lg">{highightedChar?.charFirstName} {highightedChar?.charLastName}</h1></p>
+          <div className="mt-2 col-span-2 row-start-2 row-span-5 border-2 rounded-lg">
+
+          </div>
         </div>
       )
 
@@ -136,21 +138,13 @@ export default function Welcome() {
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <h1 className="bg-[#2e026d] text-2xl ">Here&apos;s your homepage!</h1>
-            <main className="grid-cols-2 min-h-screen items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-              <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+            <main className=" min-h-screen items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+              <div className="grid grid-cols-2 gap-12 px-4 py-16">
                 
-                
-               
                 <Selection />
-
-                <div className="flex-row">
-
-                { highightedChar?.charLastName ? <PreviewWindow /> : null}
-                 
-                </div>
-
                 
               </div>
+              { highightedChar?.charLastName ? <PreviewWindow /> : null }
             </main>
             
          </>
