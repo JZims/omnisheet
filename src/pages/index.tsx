@@ -19,7 +19,7 @@ export default function Welcome() {
     const { sessionId } = useAuth()
 
     
-
+  // Dropdown Components
 
     const SystemDropdown = () => {
 
@@ -86,7 +86,8 @@ export default function Welcome() {
     }
   }
   }
-        
+
+  // Section container for Dropdowns
     const Selection = () => {
 
       return (
@@ -134,10 +135,11 @@ export default function Welcome() {
               <meta name="description" content="created by Josh Zimmerman" />
               <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main className="flex flex-row min-h-screen items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+            <h1 className="bg-[#2e026d] text-2xl ">Here&apos;s your homepage!</h1>
+            <main className="grid-cols-2 min-h-screen items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 
-                <h1 className="text-2xl">Here&apos;s your homepage!</h1>
+                
                
                 <Selection />
 
@@ -150,6 +152,7 @@ export default function Welcome() {
                 
               </div>
             </main>
+            
          </>
         )
     }
