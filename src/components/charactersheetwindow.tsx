@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const DnDCharacterSheet: React.FC = () => {
+const CharacterSheetWindow: React.FC = () => {
   const [characterInfo, setCharacterInfo] = useState({
     characterName: '',
     player: '',
@@ -58,4 +58,4 @@ const DnDCharacterSheet: React.FC = () => {
   );
 };
 
-export default DnDCharacterSheet;
+export default CharacterSheetWindow;

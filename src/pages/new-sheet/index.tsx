@@ -1,7 +1,7 @@
 import NewNav from "~/components/newnav";
 import Link from "next/link";
 import { useUser, useAuth } from "@clerk/nextjs"
-import DnDCharacterSheet from "~/components/dndcharactersheet";
+import CharacterSheetWindow from "~/components/charactersheetwindow";
 
  export default function SMultipleTextFields() {
 
@@ -23,7 +23,7 @@ import DnDCharacterSheet from "~/components/dndcharactersheet";
     <>
         <NewNav profileImgUrl={ user?.profileImageUrl ? user?.profileImageUrl: "null"}/>
     <div>
-      <DnDCharacterSheet />
+      <CharacterSheetWindow />
     </div>
     </>
   );

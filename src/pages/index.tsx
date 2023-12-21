@@ -137,7 +137,7 @@ export default function Welcome() {
             <main className="flex flex-row min-h-screen items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 
-                <p>Here&apos;s your homepage!</p>
+                <h1 className="text-2xl">Here&apos;s your homepage!</h1>
                
                 <Selection />
 
