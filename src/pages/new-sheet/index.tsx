@@ -27,7 +27,7 @@ import CharacterSheetWindow from "~/components/charactersheetwindow";
     </div>
     </>
   );
-};
+}
 
 
  
