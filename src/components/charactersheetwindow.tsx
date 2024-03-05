@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+//Placeholder Component
+
 const CharacterSheetWindow: React.FC = () => {
   const [characterInfo, setCharacterInfo] = useState({
     characterName: '',
